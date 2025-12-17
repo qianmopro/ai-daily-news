@@ -4,10 +4,10 @@ from openai import OpenAI
 
 # ================= 配置区 =================
 # 优先读取环境变量（适配 GitHub Actions），如果没有则使用本地硬编码的 Key
-API_KEY = os.environ.get("API_KEY", "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx") 
+API_KEY = os.environ.get("API_KEY", "sk-thaptnhclznybryjsvyerfvaibkkyduevnvsysyvxbwtdqyh") 
 
 BASE_URL = "https://api.siliconflow.cn/v1"
-MODEL_NAME = "Pro/deepseek-ai/DeepSeek-V3.2"
+MODEL_NAME = "MiniMaxAI/MiniMax-M2"
 
 INPUT_FILE = "raw_news.json"
 OUTPUT_FILE = "final_report.md"
@@ -67,4 +67,5 @@ def generate_report():
         print(f"❌ AI 生成失败: {e}")
 
 if __name__ == "__main__":
+
     generate_report()
