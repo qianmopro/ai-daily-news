@@ -2,18 +2,20 @@ import json
 import os
 from openai import OpenAI
 
-# ================= 配置区 =================
-# 优先读取环境变量（适配 GitHub Actions），如果没有则使用本地硬编码的 Key
-API_KEY = os.environ.get("API_KEY", "sk-thaptnhclznybryjsvyerfvaibkkyduevnvsysyvxbwtdqyh") 
+# 优先读取环境变量 (GitHub Secrets)
+API_KEY = os.environ.get("API_KEY") 
 
 BASE_URL = "https://api.siliconflow.cn/v1"
-MODEL_NAME = "MiniMaxAI/MiniMax-M2"
+MODEL_NAME = "Pro/deepseek-ai/DeepSeek-V3.2"
 
 INPUT_FILE = "raw_news.json"
 OUTPUT_FILE = "final_report.md"
-# =========================================
 
 def generate_report():
+    if not API_KEY:
+        print("❌ 错误：未检测到 API Key，请在 GitHub Secrets 中配置 SILICONFLOW_API_KEY")
+        return
+
     if not os.path.exists(INPUT_FILE):
         print(f"❌ 找不到 {INPUT_FILE}")
         return
@@ -28,19 +30,14 @@ def generate_report():
     print(f"🤖 AI ({MODEL_NAME}) 正在阅读 {len(news_data)} 条新闻...")
 
     news_content = ""
-    # 为了省钱/省Token，如果新闻太多，只取前 50 条
+    # 限制给AI看的数量，防止 Token 溢出
     for i, item in enumerate(news_data[:50]):
         news_content += f"{i+1}. 【{item['source']}】{item['title']}\n   链接：{item['link']}\n"
 
     system_prompt = """
-    你是一位科技早报主编。请根据提供的资讯，筛选最有价值的 5-8 条 AI 行业新闻，写成一份 Markdown 格式的早报。
-    结构要求：
-    1. 📅 日期
-    2. 🚀 头条重磅 (1条)
-    3. 💡 大模型动态 (2-3条)
-    4. 🛠️ 开源与工具 (2-3条)
-    5. 🌊 简讯 (1-2条)
-    注意：每条新闻后必须附带 [🔗原文](URL)。
+    你是一位科技早报主编。请根据提供的资讯，筛选 5-8 条最有价值的 AI 行业新闻，写成 Markdown 早报。
+    结构：1.📅日期 2.🚀头条 3.💡大模型 4.🛠️工具 5.🌊简讯。
+    每条必须附带 [🔗原文](URL)。
     """
 
     client = OpenAI(api_key=API_KEY, base_url=BASE_URL)
@@ -59,13 +56,12 @@ def generate_report():
         with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
             f.write(content)
         
-        print("\n✅ 早报生成成功！")
+        print("\n✅ 早报生成成功！内容如下：")
         print("-" * 30)
-        print(content)
+        print(content) # 👈 这里会直接打印在网页日志里给你看
 
     except Exception as e:
         print(f"❌ AI 生成失败: {e}")
 
 if __name__ == "__main__":
-
     generate_report()
