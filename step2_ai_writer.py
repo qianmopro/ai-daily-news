@@ -6,7 +6,7 @@ from openai import OpenAI
 API_KEY = os.environ.get("API_KEY") 
 
 BASE_URL = "https://api.siliconflow.cn/v1"
-MODEL_NAME = "Pro/deepseek-ai/DeepSeek-V3.2"
+MODEL_NAME = "MiniMaxAI/MiniMax-M2"
 
 INPUT_FILE = "raw_news.json"
 OUTPUT_FILE = "final_report.md"
@@ -65,3 +65,4 @@ def generate_report():
 
 if __name__ == "__main__":
     generate_report()
+
