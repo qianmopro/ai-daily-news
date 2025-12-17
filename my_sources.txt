@@ -1,0 +1,31 @@
+# === 🤖 AI 顶流 (官网直连) ===
+OpenAI News|https://openai.com/news/rss.xml
+OpenAI Blog|https://openai.com/index/rss.xml
+Anthropic Research|https://www.anthropic.com/feed
+Google AI Blog|https://blog.google/technology/ai/rss/
+DeepSeek News|https://rsshub.app/deepseek/news
+Hugging Face Blog|https://huggingface.co/blog/feed.xml
+
+# === 💻 技术社区 (GitHub & 论文) ===
+GitHub Trending|https://rsshub.app/github/trending/daily/any
+The GitHub Blog|https://github.blog/feed/
+ArXiv CS.CL (AI论文)|http://export.arxiv.org/rss/cs.CL
+Hacker News (AI Only)|https://rsshub.app/hackernews/newest?keyword=AI
+
+# === 🐦 Twitter 大佬 (通过 RSSHub 穿透) ===
+# GitHub Actions 可以直接连 rsshub.app，不需要镜像
+Twitter @OpenAI|https://rsshub.app/twitter/user/OpenAI
+Twitter @Elon Musk|https://rsshub.app/twitter/user/elonmusk
+Twitter @Sam Altman|https://rsshub.app/twitter/user/sama
+Twitter @Andrej Karpathy|https://rsshub.app/twitter/user/karpathy
+Twitter @AK (Papers)|https://rsshub.app/twitter/user/_akhaliq
+
+# === 🇨🇳 国内优质源 (直连) ===
+机器之心|https://www.jiqizhixin.com/rss
+LINUX DO 热门|https://linuxdorss.longpink.com/top.xml
+36氪 AI|https://rsshub.app/36kr/information/ai
+少数派|https://sspai.com/feed
+
+# === 📺 视频动态 ===
+3Blue1Brown|https://rsshub.app/youtube/user/@3blue1brown
+Andrej Karpathy YouTube|https://rsshub.app/youtube/user/@AndrejKarpathy
